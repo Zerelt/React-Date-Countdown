@@ -1,0 +1,32 @@
+{
+  "name": "react_date_countdown",
+  "version": "1.0.0",
+  "description": "date countdown app using react.js and sass",
+  "main": "webpack.config.js",
+  "scripts": {
+    "start": "webpack-dev-server",
+    "buildMe": "webpack --config webpack-production.config.js -p",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dobre Alexandru",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.18.0",
+    "babel-loader": "^6.2.7",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "css-loader": "^0.25.0",
+    "jshint": "^2.9.4",
+    "jshint-loader": "^0.8.3",
+    "node-sass": "^3.10.1",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "react-hot-loader": "^3.0.0-beta.6",
+    "sass-loader": "^4.0.2",
+    "source-map-loader": "^0.1.5",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.3",
+    "webpack-dev-server": "^1.16.2"
+  }
+}
