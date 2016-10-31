@@ -2,7 +2,7 @@ import '../css/master.scss';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import AppTitle from './Apptitle.jsx';
+import AppTitle from './AppTitle.jsx';
 import EventItem from './EventItem.jsx';
 import TwoButtons from './TwoButtons.jsx';
 import ListYear from './ListYear.jsx';
