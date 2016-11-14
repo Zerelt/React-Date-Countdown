@@ -157,7 +157,11 @@ var App = React.createClass({
   //============================== YEAR ============================
   onClickYearSpan:function(){
     this.setState({
-      yearVisible: !this.state.yearVisible
+      yearVisible: !this.state.yearVisible,
+      monthVisible : false,
+      dayVisible : false,
+      hourVisible : false,
+      minuteVisible : false
     })
   },
   onClickYearList:function(e){
@@ -173,7 +177,11 @@ var App = React.createClass({
   //============================== MONTH ===========================
   onClickMonthSpan:function(){
     this.setState({
-      monthVisible: !this.state.monthVisible
+      monthVisible: !this.state.monthVisible,
+      yearVisible : false,
+      dayVisible : false,
+      hourVisible : false,
+      minuteVisible : false
     });
     // console.log('test1');
   },
@@ -213,7 +221,11 @@ var App = React.createClass({
     }
     this.setState({
       dayList: mnthRange,
-      dayVisible: !this.state.dayVisible
+      dayVisible: !this.state.dayVisible,
+      yearVisible : false,
+      monthVisible : false,
+      hourVisible : false,
+      minuteVisible : false
     })
   },
   onClickDayList:function(e){
@@ -227,7 +239,11 @@ var App = React.createClass({
   //=============================== HOURS =========================
   onClickHourSpan:function(){
     this.setState({
-      hourVisible: !this.state.hourVisible
+      hourVisible: !this.state.hourVisible,
+      yearVisible : false,
+      monthVisible : false,
+      dayVisible : false,
+      minuteVisible : false
     });
   },
   onClickHourList:function(e){
@@ -241,7 +257,11 @@ var App = React.createClass({
   //============================== MINUTES ========================
   onClickMinuteSpan:function(){
     this.setState({
-      minuteVisible: !this.state.minuteVisible
+      minuteVisible: !this.state.minuteVisible,
+      yearVisible : false,
+      monthVisible : false,
+      dayVisible : false,
+      hourVisible : false
     })
   },
   onClickMinuteList:function(e){
