@@ -7,7 +7,7 @@ var NewUserData = React.createClass({
       <div className='userInput' onSubmit={this.props.handleSubmit0}>{/*onSubmit={}*/}
         <form className='inputWrapper'>
           <div className='inputInnerWrapper'>
-          <input placeholder='Event Name*' type='text' name='eventName' maxLength={27} autoFocus />
+          <input onClick={this.props.closeAllMenus} placeholder='Event Name*' type='text' name='eventName' maxLength={27} autoFocus />
 
           <div className='newWrapper' onClick={this.props.onClickYearSpan}>
             <span>

@@ -330,6 +330,15 @@ var App = React.createClass({
       timeInput:''
     })
   },
+  closeAllMenus:function() {
+    this.setState({
+      yearVisible: false,
+      monthVisible : false,
+      dayVisible : false,
+      hourVisible : false,
+      minuteVisible : false
+    });
+  },
 
   //================== SHOW CLOSEST EVENT ========================
   handleClosest:function(){
@@ -479,6 +488,7 @@ var App = React.createClass({
                               showHour={showHour}
                               onClickMinuteSpan={this.onClickMinuteSpan}
                               showMinute={showMinute}
+                              closeAllMenus={this.closeAllMenus}
                               {...this.state}/> : null }
       </div>
     );
