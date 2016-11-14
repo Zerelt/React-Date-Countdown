@@ -150,7 +150,7 @@ var App = React.createClass({
       }
     }
   },
-  componentDidUnmount:function() {
+  componentWillUnmount:function() {
     clearInterval(this.timer);
   },
 
