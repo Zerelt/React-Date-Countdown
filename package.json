@@ -2,7 +2,7 @@
   "name": "react_date_countdown",
   "version": "1.0.0",
   "description": "date countdown app using react.js and sass",
-  "main": "webpack.config.js",
+  "main": "entry.jsx",
   "scripts": {
     "start": "webpack-dev-server",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,8 +16,10 @@
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
     "css-loader": "^0.25.0",
+    "file-loader": "^0.11.1",
     "jshint": "^2.9.4",
     "jshint-loader": "^0.8.3",
+    "moment": "^2.18.1",
     "node-sass": "^3.10.1",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",

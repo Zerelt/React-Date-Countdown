@@ -12,6 +12,7 @@ import ListHour from './ListHour.jsx';
 import ListMinute from './ListMinute.jsx';
 import NewUserData from './NewUserData.jsx';
 import ClosestEvent from './ClosestEvent.jsx';
+import ColorTheme from './ColorTheme.jsx';
 
 
 //=================== TOP LEVEL ====================================
@@ -26,10 +27,11 @@ var App = React.createClass({
 
     return({
       arr:[
-        {eventName:'App finished ( almost :) )',targetDate:1480179600000},
         {eventName:'Birthday',targetDate:1489914000000},
         {eventName:'Meeting',targetDate:1480503600000},
-        {eventName:'Lunch',targetDate:1480410000000}
+        {eventName:'Lunch',targetDate:1500410000000},
+        {eventName:'Christmas 2017',targetDate:1516870800000},
+        {eventName:'New Years Eve 23:59 o\'clock',targetDate:1517439540000}
       ],
 
       //=================== TOGGLE FORM =====================
@@ -70,7 +72,13 @@ var App = React.createClass({
       timeInput:'',
 
       //============ CLOSEST EVENT ===============
-      closestEvn:''
+      closestEvn:'',
+
+      //============ THEME BTN HANDLER ============
+      newTheme:'selector-p',
+
+      //============ SHOW THEME PICKER ============
+      chooseTheme: false
     });
   },
   componentWillMount:function() {
@@ -88,7 +96,7 @@ var App = React.createClass({
     var closestEv = (function() {
       for(var i=0; i<=sortedArr.length-1; i++) {
         if(sortedArr[i].targetDate >= storingEvent) {
-          console.log(sortedArr[i]);
+          // console.log(sortedArr[i]);
           return sortedArr[i];
         }
       }
@@ -97,7 +105,7 @@ var App = React.createClass({
     this.setState({
       closestEvn: closestEv
     });
-    console.log(this.state.closestEvn);
+    // console.log(this.state.closestEvn);
   },
   componentDidUpdate: function() {
     // var test1 = ReactDOM.findDOMNode(this.refs.glyphiconsBox0)
@@ -145,8 +153,7 @@ var App = React.createClass({
         this.setState({
           timeInput:bDateMilis
         });
-        //why is this printing to the console the last value it had instead of the current one ?
-        console.log(this.state.timeInput);
+        // console.log(this.state.timeInput);
       }
     }
   },
@@ -275,11 +282,14 @@ var App = React.createClass({
   //================= ADD SUBMIT REMOVE ==========================
   handleSubmit:function(e){
     e.preventDefault();
+    let submitF = ReactDOM.findDOMNode(this.allTheSounds).children[2];
+    submitF.play();
+
     var newDataStuff = {
       eventName: e.target.eventName.value,
       targetDate: this.state.timeInput
     };
-    console.log(newDataStuff);
+    // console.log(newDataStuff);
     var newArr = this.state.arr.slice();
     newArr.push(newDataStuff);
     this.setState({
@@ -299,22 +309,29 @@ var App = React.createClass({
     })
   },
   handleRemove:function(index){
+    let deleteEv = ReactDOM.findDOMNode(this.allTheSounds).children[3];
+    deleteEv.play();
+
     /*splice method is editing the state object directly,
     which you should never do. Calling slice first creates a copy of the data*/
     var newArr2 = this.state.arr.slice() //make copy of current state
     newArr2.splice(index,1); //remove element
     this.setState({
       arr: newArr2
-    })
+    });
   },
   handleClickPlus: function(){
+    let plusS = ReactDOM.findDOMNode(this.allTheSounds).children[0];
+    plusS.play();
+
     this.setState({
       show : !this.state.show
     })
   },
   handleClickX:function() {
-    // var audio = new Audio(' https://s3.amazonaws.com/freecodecamp/simonSound2.mp3');
-    // audio.play();
+    let cancelSub = ReactDOM.findDOMNode(this.allTheSounds).children[1];
+    cancelSub.play();
+
     this.setState({
       show: !this.state.show,
       yearVisible: false,
@@ -342,6 +359,9 @@ var App = React.createClass({
 
   //================== SHOW CLOSEST EVENT ========================
   handleClosest:function(){
+    let closestSound = ReactDOM.findDOMNode(this.allTheSounds).children[0];
+    closestSound.play();
+
     var storingEvent=this.state.rightNow; /*using i<=this.state.rightNow gave 'cannot read property of undefined,but assiging it to a variable like so works (why?)'*/
     var sortedArr = this.state.arr.sort(function(a,b){
       return a.targetDate - b.targetDate;
@@ -394,7 +414,26 @@ var App = React.createClass({
     // console.log('Today time in miliseconds:   '+ aDate2.getTime());
   },
 
+  //================= THEME BUTTON HANDLER ========================
+  handleColorTheme:function(){
+    let newColorSound = ReactDOM.findDOMNode(this.allTheSounds).children[0];
+    newColorSound.play();
 
+    this.setState({
+      chooseTheme: !this.state.chooseTheme
+    });
+    // console.log('clicked handleColorTheme');
+  },
+
+  //================ NEW THEME SELECTOR ===========================
+  newColor: function (e) {
+    e.preventDefault();
+    var colorChange = e.target.value;
+    this.setState({
+      newTheme: e.target.value,
+      chooseTheme: false
+    });
+  },
 
 
   render: function(){
@@ -461,8 +500,17 @@ var App = React.createClass({
     // var closestEv={eventName:'test',targetDate:153}
 
     return(
-      <div className='centeredDiv' >
-        <AppTitle />
+      <div className={'centeredDiv '+this.state.newTheme} ref={(allTheSounds) => this.allTheSounds = allTheSounds}>
+        <audio preload='auto' src={require('../sounds/genericx3.mp3')} type='audio/mpeg' />
+      {/* putting the audio tag inside the glyphicons div inside the TwoButtons component and trying to
+        access/play it via ReactDOM.findDOMNode(this.plusSign).children[1].children[0]; gives undefined  */}
+        <audio preload='auto' src={require('../sounds/cancelSub.mp3')} type='audio/mpeg' />
+        <audio preload='auto' src={require('../sounds/submitF.mp3')} type='audio/mpeg' />
+        <audio preload='auto' src={require('../sounds/deleteE.mp3')} type='audio/mpeg' />
+        <AppTitle
+          newTheme={this.state.newTheme}
+          handleColorTheme={this.handleColorTheme}
+        />
         <div className='listWrapper'>
           <ul className='list-group'>
             {this.state.arr.sort(function(a,b) {
@@ -471,9 +519,17 @@ var App = React.createClass({
 
           </ul>
         </div>
-        {this.state.showC ? <ClosestEvent closestEv={this.state.closestEvn} rightNow={this.state.rightNow}/> : null}
+        {this.state.chooseTheme ? <ColorTheme newTheme={this.state.newTheme} newColor={this.newColor} /> : null}
+        {this.state.showC ? <ClosestEvent closestEv={this.state.closestEvn}
+                            rightNow={this.state.rightNow}
+                            newTheme={this.state.newTheme}/> : null}
         {/*<AcceptOrCancel showing={this.state.show} handleClickPlus0={this.handleClickPlus}/>*/}
-        <TwoButtons ref='glyphiconsBox0' showing={this.state.show} handleClickPlus0={this.handleClickPlus} handleClosest={this.handleClosest}/>
+        <TwoButtons ref='glyphiconsBox0'
+          showing={this.state.show}
+          handleClickPlus0={this.handleClickPlus}
+          handleClosest={this.handleClosest}
+          newTheme={this.state.newTheme}
+        />
         { this.state.show ? <NewUserData
                               handleSubmit0={this.handleSubmit}
                               showing={this.state.show}

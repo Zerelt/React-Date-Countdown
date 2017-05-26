@@ -69,8 +69,30 @@ var NewUserData = React.createClass({
           </div>
           </div>{/*end inputInnerWrapper*/}
           <div id={this.props.showing ? 'glyphiconsBox2' : 'glyphiconsBoxFalse'}>
-            <input type='submit' className="glyphicons" value={'\u2713'}/>{/*u2714*/}
-            <div className="glyphicons" onClick={this.props.handleClickX}>{'\u2a2f'}</div>{/*u274c*/}
+            {/* <input type='submit' className="glyphicons" value={'\u2713'}/> */} {/*u2714*/}
+            <button type='submit' className="glyphicons">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 46.3 46.3" className='svgCircle'>
+                <g id="XMLID_18_">
+                  <circle id="XMLID_20_" className={this.props.newTheme+'-circle'} cx="23.1" cy="23.1" r="23.1" />
+                </g>
+                <g id="XMLID_15_">
+                  <path id="XMLID_17_" className={this.props.newTheme+'-fill'} d="M23.9 30.5l-2.4 2.4c-.9.9-2.4.9-3.3 0l-7.4-7.4c-.9-.9-.9-2.4 0-3.3l2.4-2.4c.9-.9 2.4-.9 3.3 0l7.4 7.4c.9.9.9 2.4 0 3.3z" style={{fill:'#fa0055'}} />
+                  <path id="XMLID_16_" className={this.props.newTheme+'-fill'} d="M18.3 32.9l-2.4-2.4c-.9-.9-.9-2.4 0-3.3l13.8-13.8c.9-.9 2.4-.9 3.3 0l2.4 2.4c.9.9.9 2.4 0 3.3L21.6 32.9c-.9.9-2.4.9-3.3 0z" style={{fill:'#fa0055'}} />
+                </g>
+              </svg>
+            </button>
+            <div className="glyphicons" onClick={this.props.handleClickX}>
+              {/* {'\u2a2f'} */}
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 46.3 46.3" className='svgCircle'>
+                <g id="XMLID_18_">
+                  <circle id="XMLID_20_" className={this.props.newTheme+'-circle'} cx="23.1" cy="23.1" r="23.1" />
+                </g>
+                <g id="XMLID_15_">
+                  <path id="XMLID_17_" className={this.props.newTheme+'-fill'} d="M34 30.5L30.5 34c-.6.6-1.7.6-2.3 0l-16-15.9c-.6-.6-.6-1.7 0-2.3l3.5-3.5c.6-.6 1.7-.6 2.3 0l16 15.9c.7.6.7 1.6 0 2.3z" style={{fill:'#fa0055'}}/>
+                  <path id="XMLID_16_" className={this.props.newTheme+'-fill'} d="M30.5 12.2l3.5 3.5c.6.6.6 1.7 0 2.3L18.1 34c-.6.6-1.7.6-2.3 0l-3.5-3.5c-.6-.6-.6-1.7 0-2.3l15.9-15.9c.6-.7 1.6-.7 2.3-.1z" style={{fill:'#fa0055'}}/>
+                </g>
+              </svg>
+            </div>{/*u274c*/}
           </div>
         </form>
 

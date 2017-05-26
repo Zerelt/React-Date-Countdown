@@ -1,8 +1,12 @@
+var path = require('path');
+const webpack = require('webpack');
+
 module.exports = {
     entry: getEntrySources(['./src/js/entry.jsx']),
     output: {
-        publicPath: 'http://localhost:8080',
-        filename: 'build/bundle.js'
+        path: path.resolve(__dirname, 'build'),
+        publicPath: 'http://localhost:8080/build',
+        filename: 'bundle.js'
     },
     devtool: 'eval', //for production 'source-map'
     module: {
@@ -20,14 +24,32 @@ module.exports = {
                 loaders: ['style', 'css', 'sass?outputStyle=expanded']
             }, {
                 test: /\.(jpe?g|png|gif|svg)$/i,
-                loaders: ['url?limit=8192', 'img']
+                include:/src/,
+                exclude:/(node-modules)/,
+                loader:'file-loader?name=[name].[ext]&outputPath=./build/build/images/',
+                // options: {   //need to install  "image-webpack-loader": "^3.3.1",
+                //     name: './build/images/[name].[ext]'
+                // }
+                // loader: [
+                //     'file-loader?hash=sha512&digest=hex&name=./build/build/images/[name].[ext]',
+                //     'image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false'
+                // ],
             }, {
                 test: /\.jsx?$/,
                 exclude: /(node-modules)/,
                 loaders: ['react-hot-loader/webpack', 'babel?presets[]=stage-0,presets[]=react,presets[]=es2015']
+            }, {
+              test:/\.mp3$/,
+              include:/src/,
+              loader:'file-loader?name=[name].[ext]&outputPath=./build/build/sounds/'
             }
         ]
-    }
+    },
+    plugins: [
+      //from https://github.com/jmblog/how-to-optimize-momentjs-with-webpack
+    // load `moment/locale/ja.js` and `moment/locale/it.js`
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+  ],
 };
 
 function getEntrySources(sources) {
