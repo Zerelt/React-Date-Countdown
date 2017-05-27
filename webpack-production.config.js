@@ -46,6 +46,9 @@ module.exports = {
               test:/\.mp3$/,
               include:/src/,
               loader:'file-loader?name=[name].[ext]&outputPath=../sounds/'
+            }, {
+                test: /\.(eot|ttf|woff|woff2)$/i,
+                loader:'file-loader?name=[name].[ext]&outputPath=../fonts/'
             }
         ]
     }
