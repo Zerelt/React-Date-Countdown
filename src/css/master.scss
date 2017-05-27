@@ -1,7 +1,11 @@
+@import url("https://fonts.googleapis.com/css?family=Kaushan+Script|Lato rel=stylesheet");
+
 @font-face {
   font-family:Blacksword;
-  src:'./Blacksword.ttf' format('truetype');
-  src:'./Blacksword.woff' format('woff');
+  src:url('../fonts/Blacksword.ttf') format('truetype');
+  src:url('../fonts/Blacksword.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
 $F-family1:Lato;
@@ -218,7 +222,7 @@ body {
     //============================= H2 TITLE ===========================
     h2 {
       position: relative;
-      font-family: $F-family2;
+      font-family: $F-family2, 'Kaushan Script';
       font-size: 2em;
       letter-spacing: 2px;
       color: $H2-color;

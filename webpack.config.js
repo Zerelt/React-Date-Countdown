@@ -42,6 +42,13 @@ module.exports = {
               test:/\.mp3$/,
               include:/src/,
               loader:'file-loader?name=[name].[ext]&outputPath=./build/build/sounds/'
+            }, {
+                test: /\.(eot|ttf|woff|woff2)$/i,
+                // test: /\.(ttf|eot|woff)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                // include:path.join(__dirname, 'src/fonts'),
+                // loader:'file-loader?name=/fonts/[name].[ext]',
+                // loader: 'url-loader?importLoaders=1&limit=100000',
+                loader:'file-loader?name=[name].[ext]&outputPath=../fonts/'
             }
         ]
     },
